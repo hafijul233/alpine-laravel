@@ -15,13 +15,15 @@ RUN apk add --no-cache php php-common php-fpm php-session php-opcache \
     php-zip php-cli php-curl php-mbstring php-fileinfo php-json
 
 # Installing PHP Default Database Extensions
-#RUN apk add --no-cache php-mysqli php-odbc php-pgsql php-sqlite3 php-mssql
+RUN apk add --no-cache php-mysqli
+# php-odbc php-pgsql php-sqlite3 php-mssql
 
 # Installing PHP XML Extensions
-#RUN apk add --no-cache php-xml php-dom php-xmlreader
+#RUN apk add --no-cache php-xml php-dom php-xmlreader php-simplexml
 
 # Installing PHP PDO Extension
-RUN apk add --no-cache php-pdo php-pdo_mysql php-pdo_odbc php-pdo_pgsql php-pdo_sqlite
+RUN apk add --no-cache php-pdo php-pdo_mysql
+# php-pdo_odbc php-pdo_pgsql php-pdo_sqlite
 
 # Installing PHP Intl Extension
 #RUN apk add --no-cache icu-data-full php-intl php-bcmath
