@@ -6,8 +6,7 @@ USER root
 
 # OS Essentials Programs
 RUN echo "UTC" >> /etc/timezone
-RUN apk --no-cache update && \
-    apk --no-cache upgrade && \
+RUN apk --no-cache update &&  apk --no-cache upgrade && \
     apk add --no-cache curl vim
 
 # Installing PHP-8.1.13
@@ -35,17 +34,7 @@ RUN apk add --no-cache php-pdo php-pdo_mysql
 #RUN apk add --no-cache php-soap
 
 # Configure PHP INI files
-RUN sed -i "s/short_open_tag = Off/short_open_tag = On/g" /etc/php81/php.ini
-RUN sed -i "s/disable_functions =/disable_functions = create_function, eval, exec, shell_exec/g" /etc/php81/php.ini
-RUN sed -i "s/expose_php = On/expose_php = Off/g" /etc/php81/php.ini
-RUN sed -i "s/max_execution_time = 30/max_execution_time = 300/g" /etc/php81/php.ini
-RUN sed -i "s/memory_limit = 128M/memory_limit = 2G/g" /etc/php81/php.ini
-RUN sed -i "s/display_errors = Off/display_errors = On/g" /etc/php81/php.ini
-RUN sed -i "s/display_startup_errors = Off/display_startup_errors = On/g" /etc/php81/php.ini
-RUN sed -i "s/log_errors = On/log_errors = Off/g" /etc/php81/php.ini
-RUN sed -i "s/post_max_size = 8M/post_max_size = 1G/g" /etc/php81/php.ini
-RUN sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 1G/g" /etc/php81/php.ini
-RUN sed -i "s/max_file_uploads = 20/max_file_uploads = 50/g" /etc/php81/php.ini
+COPY .docker/php/php.ini /etc/php81/php.ini
 
 # Installing Composer Package Manager
 RUN apk add --no-cache php-phar && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
