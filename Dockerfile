@@ -50,7 +50,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin -
 RUN apk add --no-cache nginx mariadb mariadb-client
 
 # Configure NGINX
-COPY vhost.conf /etc/nginx/http.d/default.conf
+COPY .docker/web/vhost.conf /etc/nginx/http.d/default.conf
 
 # Build Process
 EXPOSE 80 443
