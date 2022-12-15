@@ -7,28 +7,15 @@ USER root
 # OS Essentials Programs
 RUN echo "UTC" >> /etc/timezone
 RUN apk --no-cache update &&  apk --no-cache upgrade && \
-    apk add --no-cache curl vim
+    apk add --no-cache ca-certificates curl vim git zip unzip wget icu-data-full
 
-# Installing PHP-8.1.13
+# Installing PHP-8.1 & Common Extensions
 RUN apk add --no-cache php php-common php-fpm php-session php-opcache \
-    php-zip php-cli php-curl php-mbstring php-fileinfo php-json
-
-# Installing PHP Default Database Extensions
-RUN apk add --no-cache php-mysqli
-# php-odbc php-pgsql php-sqlite3 php-mssql
-
-# Installing PHP XML Extensions
-#RUN apk add --no-cache php-xml php-dom php-xmlreader php-simplexml
-
-# Installing PHP PDO Extension
-RUN apk add --no-cache php-pdo php-pdo_mysql
-# php-pdo_odbc php-pdo_pgsql php-pdo_sqlite
-
-# Installing PHP Intl Extension
-#RUN apk add --no-cache icu-data-full php-intl php-bcmath
-
-# Installing PHP Image Support Extension
-#RUN apk add --no-cache php-exif php-gd
+    php-zip php-cli php-curl php-mbstring php-fileinfo php-json \
+    php-mysqli php-odbc php-pgsql php-sqlite3 php-mssql php-xml \
+    php-dom php-xmlreader php-simplexml php-pdo php-pdo_mysql \
+    php-pdo_odbc php-pdo_pgsql php-pdo_sqlite php-intl php-bcmath \
+    php-exif php-gd
 
 # Installing PHP SOAP Extension
 #RUN apk add --no-cache php-soap
